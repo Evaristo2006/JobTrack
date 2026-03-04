@@ -132,6 +132,16 @@ class ApplicationsController extends Controller
             ->with('success','Candidatura atualizada!');
     }
 
+    public function show(Application $application)
+{
+    // 🔒 Garantir que o usuário só veja suas próprias candidaturas
+    if ($application->user_id !== Auth::user()->id) {
+        abort(403, 'Não autorizado');
+    }
+
+    return view('admin.applications.show', compact('application'));
+}
+
     public function destroy(Application $application)
     {
         if ($application->user_id !== Auth::user()->id) {

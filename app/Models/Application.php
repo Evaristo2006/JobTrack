@@ -19,7 +19,8 @@ class Application extends Model
         'salary',
         'applied_at',
         'job_url',
-        'notes'
+        'notes',
+        'cv_path'
     ];
 
     protected $dates = [

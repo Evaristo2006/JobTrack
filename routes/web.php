@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\InterviewsController;
 use App\Http\Controllers\Admin\GoalsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\ReportsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,14 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+
+
 // Rotas autenticadas
 Route::middleware(['auth', 'verified'])->group(function () {
+
+         // PDF Relatório de Metas
+    Route::get('/reports/goals-pdf', [ReportsController::class, 'goalsPdf'])
+        ->name('reports.pdf');
 
     // Dashboard/Home - ROTA PRINCIPAL
     Route::get('/dashboard', [HomeController::class, 'index'])->name('home.index');
@@ -39,6 +46,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'statuses' => StatusController::class,
         'interviews' => InterviewsController::class,
         'goals' => GoalsController::class,
+
+
     ]);
 });
 

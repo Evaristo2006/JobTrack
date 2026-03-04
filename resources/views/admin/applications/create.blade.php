@@ -9,10 +9,11 @@
 </div>
 
 <div class="card" style="max-width: 800px;">
-    <form method="POST" action="{{ route('applications.store') }}">
+    <form method="POST" action="{{ route('applications.store') }}" enctype="multipart/form-data">
         @csrf
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+            <!-- Campos já existentes -->
             <div class="form-group">
                 <label class="form-label" for="company">Empresa</label>
                 <input type="text" id="company" name="company" class="form-input" value="{{ old('company') }}" required>
@@ -67,6 +68,7 @@
             </div>
         </div>
 
+        <!-- URL e Notas -->
         <div class="form-group" style="grid-column: 1 / -1;">
             <label class="form-label" for="job_url">URL da Vaga</label>
             <input type="url" id="job_url" name="job_url" class="form-input" value="{{ old('job_url') }}">
@@ -77,6 +79,13 @@
             <label class="form-label" for="notes">Notas</label>
             <textarea id="notes" name="notes" class="form-textarea">{{ old('notes') }}</textarea>
             @error('notes') <span style="color: #ef4444; font-size: 0.875rem;">{{ $message }}</span> @enderror
+        </div>
+
+        <!-- Upload CV -->
+        <div class="form-group" style="grid-column: 1 / -1;">
+            <label class="form-label" for="cv">CV (PDF)</label>
+            <input type="file" id="cv" name="cv" class="form-input" accept=".pdf">
+            @error('cv') <span style="color: #ef4444; font-size: 0.875rem;">{{ $message }}</span> @enderror
         </div>
 
         <div style="display: flex; gap: 1rem; margin-top: 2rem;">
