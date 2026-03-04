@@ -32,7 +32,7 @@ return new class extends Migration
             $table->date('applied_at');
             $table->string('job_url')->nullable();
             $table->text('notes')->nullable();
-
+            $table->string('cv_path')->nullable();
             $table->timestamps();
         });
     }

@@ -25,6 +25,9 @@ class Application extends Model
     protected $dates = [
         'applied_at',
     ];
+    protected $casts = [
+    'applied_at' => 'date',
+];
 
     // Relacionamentos
     public function user()
